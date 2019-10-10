@@ -10,13 +10,14 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <b>School</b>Manager
+            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to your account.</p>
+            <p class="login-box-msg">{{ __('adminlte::adminlte.login_message') }}</p>
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
-               @csrf
+                {{ csrf_field() }}
+
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}"
                            placeholder="{{ __('adminlte::adminlte.email') }}">
@@ -41,13 +42,13 @@
                     <div class="col-xs-8">
                         <div class="icheck-primary">
                             <input type="checkbox" name="remember" id="remember">
-                            <label for="remember">remember me</label>
+                            <label for="remember">{{ __('adminlte::adminlte.remember_me') }}</label>
                         </div>
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">
-                           Sign in
+                            {{ __('adminlte::adminlte.sign_in') }}
                         </button>
                     </div>
                     <!-- /.col -->
@@ -55,16 +56,17 @@
             </form>
             <br>
             <p>
-                <a href="{{ url('register') }}" class="text-center">
-                    Enroll
+                <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" class="text-center">
+                    {{ __('adminlte::adminlte.i_forgot_my_password') }}
                 </a>
             </p>
-
-            <p>
-                <a href="{{ url('password/reset') }}" class="text-center">
-                   I forgot my password
-                </a>
-            </p>
+            @if (config('adminlte.register_url', 'register'))
+                <p>
+                    <a href="{{ url(config('adminlte.register_url', 'register')) }}" class="text-center">
+                        {{ __('adminlte::adminlte.register_a_new_membership') }}
+                    </a>
+                </p>
+            @endif
         </div>
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->

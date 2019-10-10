@@ -1,7 +1,6 @@
-@extends('layouts.default')
+@extends('adminlte::master')
 
 @section('adminlte_css')
-    <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     @yield('css')
 @stop
 
@@ -10,15 +9,18 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <b>School</b>Manager
+            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to your account.</p>
-            <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
-               @csrf
+            <p class="login-box-msg">{{ __('adminlte::adminlte.password_reset_message') }}</p>
+            <form action="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" method="post">
+                {{ csrf_field() }}
+
+                <input type="hidden" name="token" value="{{ $token }}">
+
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <input type="email" name="email" class="form-control" value="{{ old('email') }}"
+                    <input type="email" name="email" class="form-control" value="{{ isset($email) ? $email : old('email') }}"
                            placeholder="{{ __('adminlte::adminlte.email') }}">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     @if ($errors->has('email'))
@@ -37,34 +39,20 @@
                         </span>
                     @endif
                 </div>
-                <div class="row">
-                    <div class="col-xs-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" name="remember" id="remember">
-                            <label for="remember">remember me</label>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">
-                           Sign in
-                        </button>
-                    </div>
-                    <!-- /.col -->
+                <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+                    <input type="password" name="password_confirmation" class="form-control"
+                           placeholder="{{ __('adminlte::adminlte.retype_password') }}">
+                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                    @if ($errors->has('password_confirmation'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                        </span>
+                    @endif
                 </div>
+                <button type="submit" class="btn btn-primary btn-block btn-flat">
+                    {{ __('adminlte::adminlte.reset_password') }}
+                </button>
             </form>
-            <br>
-            <p>
-                <a href="{{ url('register') }}" class="text-center">
-                    Enroll
-                </a>
-            </p>
-
-            <p>
-                <a href="{{ url('password/reset') }}" class="text-center">
-                   I forgot my password
-                </a>
-            </p>
         </div>
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->
