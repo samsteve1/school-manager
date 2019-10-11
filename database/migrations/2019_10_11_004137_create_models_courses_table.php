@@ -17,7 +17,6 @@ class CreateModelsCoursesTable extends Migration
             $table->bigIncrements('id');
             $table->string('code');
             $table->string('title');
-            $table->integer('maximum_number_of_students');
             $table->softDeletes();
             $table->timestamps();
         });

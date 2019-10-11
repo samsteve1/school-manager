@@ -29,8 +29,7 @@
 
 <li class="header">ACCOUNT</li>
 <li class="">
-    <a href="http://127.0.0.1:8000/admin/settings"
-               >
+    <a href="{{ route('account.profile') }}">
         <i class="fas fa-fw fa-user "></i>
         <span>
             Profile
@@ -50,7 +49,7 @@
     </li>
     <!--if the authenticated user  is an admin, include the admin links -->
     @admin
-        @include('account.layouts.partials.side-bar.admin._sidebar')
+        @include('admin.partials.sidebar._sidebar')
     @endadmin
 
 

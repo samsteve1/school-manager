@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Course;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Requests\Admin\ClassStoreRequest;
 
 class ClassController extends AdminController
@@ -12,8 +12,21 @@ class ClassController extends AdminController
     {
         $classes = Course::get();
     }
+    public function create()
+    {
+        return view('admin.pages.class.add-class');
+    }
+
+    /**
+     * Create a new course
+     *
+     * @param ClassStoreRequest $request
+     *
+     */
     public function store(ClassStoreRequest $request)
     {
-        dd($request->all());
+        $course = $request->only(['code', 'title']);
+        $course  = Course::create($course);
+        return redirect()->back()->withSuccess('Class created!');
     }
 }
