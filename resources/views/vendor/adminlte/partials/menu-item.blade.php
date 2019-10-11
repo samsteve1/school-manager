@@ -1,3 +1,4 @@
+
 @if (is_string($item))
     <li class="header">{{ $item }}</li>
 @elseif (isset($item['header']))

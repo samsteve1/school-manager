@@ -11,4 +11,5 @@
     background-image: url({{ asset('images/cover.jpg') }});
     background-size: cover;
 }
+
 </style>
