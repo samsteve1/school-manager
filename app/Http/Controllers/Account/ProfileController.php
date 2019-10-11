@@ -14,7 +14,7 @@ class ProfileController extends Controller
 
 
 
-        return view('account.pages.profile', [
+        return view('account.profile.index', [
             'roles' => $roles,
             'permissions' => $permissions
         ]);

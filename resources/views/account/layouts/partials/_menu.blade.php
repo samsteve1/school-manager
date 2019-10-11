@@ -38,7 +38,7 @@
                 </a>
         </li>
 <li class="">
-    <a href="http://127.0.0.1:8000/admin/settings"
+    <a href="{{ route('account.password') }}"
                >
         <i class="fas fa-fw fa-lock "></i>
         <span>
