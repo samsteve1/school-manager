@@ -26,6 +26,7 @@ class ClassStoreRequest extends FormRequest
         return [
             'code' => 'required|min:3|max:10|unique:courses,code',
             'title' => 'required|min:3|max:200|unique:courses,title',
+            'semester' => 'required|exists:semesters,id'
         ];
     }
 
@@ -39,7 +40,9 @@ class ClassStoreRequest extends FormRequest
             'title.required' => 'Please provide a valid course title',
             'title.min'      =>  'Course title must be a minimum of 3 characters',
             'title.max'      =>  'Course title cannot be more than 10 characters',
-            'title.unique' =>    'Course title already exists.'
+            'title.unique' =>    'Course title already exists.',
+            'semester.required' => 'An active semester is required',
+            'semester.exists' =>  'An active semester is required'
         ];
     }
 }

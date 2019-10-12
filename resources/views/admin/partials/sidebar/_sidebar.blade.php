@@ -1,7 +1,7 @@
 <!--Admin Linksu-->
 <li class="header">
         ADMINISTRATIVE TASKS
-     </li>
+</li>
      <li class="">
          <a href="{{ route('admin.class.create') }}">
              <i class="fa fa-plus"></i>
@@ -13,6 +13,12 @@
             <i class="fa fa-eye"></i>
             <span>View Classes</span>
         </a>
+     </li>
+     <li class="">
+         <a href="{{ route('admin.class.teacher') }}">
+             <i class="fa fa-chalkboard-teacher"></i>
+             <span>Assign Teacher</span>
+         </a>
      </li>
 
 

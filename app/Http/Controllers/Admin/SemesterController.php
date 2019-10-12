@@ -11,7 +11,8 @@ class SemesterController extends Controller
     public function show(Semester $semester)
     {
 
-        $courses = $semester->courses->load(['users']);
+        $courses = $semester->courses->load(['users', 'teacher']);
+
        return view('admin.semester.index', compact(['semester', 'courses']));
     }
 }

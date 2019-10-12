@@ -8,6 +8,8 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['au
     // Class management
     Route::get('/class/create', 'ClassController@create')->name('class.create');
     Route::post('/class/create', 'ClassController@store')->name('class.store');
+    Route::get('/class/teacher', 'ClassController@teacher')->name('class.teacher');
+    Route::post('/class/{course}/teacher', 'ClassController@assignTeacher')->name('class.teacher.assign');
 
     //  Session Management
     Route::get('/session/create', 'SessionController@create')->name('session.create');

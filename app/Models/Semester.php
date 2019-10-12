@@ -17,4 +17,14 @@ class Semester extends Model
     {
         return $this->belongsToMany(Course::class, 'semesters_courses');
     }
+
+    public function students()
+    {
+        $count = 0;
+        $courses = $this->courses;
+        foreach($courses as $course) {
+            $count += $course->users->count();
+        }
+        return $count;
+    }
 }
