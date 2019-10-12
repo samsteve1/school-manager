@@ -14,7 +14,7 @@ class ClassController extends AdminController
     }
     public function create()
     {
-        return view('admin.pages.class.add-class');
+        return view('admin.class.add-class');
     }
 
     /**

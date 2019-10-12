@@ -19233,7 +19233,12 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
+// import Test from './components/test.vue'
+// Vue.component('test', Test);
+// const app = new Vue({
+//     el: '#app'
+// });
 
 /***/ }),
 

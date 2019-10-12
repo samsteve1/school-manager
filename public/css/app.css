@@ -1,0 +1,15 @@
+.sidebar-dropdown {
+  margin-left: 6px;
+  background-color: inherit;
+}
+
+.sidebar-dropdown .sidebar-button,
+.sidebar-dropdown .dropdown-menu {
+  background-color: inherit;
+  color: #bbb;
+}
+
+.sidebar-dropdown .sidebar-button {
+  font-size: 14px;
+}
+

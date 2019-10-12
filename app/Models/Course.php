@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Semester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,7 +13,12 @@ class Course extends Model
 
     public function users()
     {
-        //return $this->belongsToMany(User::class)
+        return $this->belongsToMany(User::class, 'users_courses');
+    }
+
+    public function semesters()
+    {
+        return $this->belongsToMany(Semester::class, 'semesters_courses');
     }
 
 }

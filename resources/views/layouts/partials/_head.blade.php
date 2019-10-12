@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/Ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     @include('adminlte::plugins', ['type' => 'css'])
 

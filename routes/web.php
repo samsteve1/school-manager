@@ -4,8 +4,18 @@
  * Admin Routes
  */
 Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin'], 'as' => 'admin.'], function () {
-    Route::get('/create-class', 'ClassController@create')->name('class.create');
-    Route::post('/create-class', 'ClassController@store')->name('class.store');
+
+    // Class management
+    Route::get('/class/create', 'ClassController@create')->name('class.create');
+    Route::post('/class/create', 'ClassController@store')->name('class.store');
+
+    //  Session Management
+    Route::get('/session/create', 'SessionController@create')->name('session.create');
+    Route::get('/session', 'SessionController@index')->name('session.index');
+    Route::post('/session/create', 'SessionController@store')->name('session.create');
+
+    //  Semester
+    Route::get('/semester/{semester}', 'SemesterController@show')->name('semester.show');
 });
 
 /**
