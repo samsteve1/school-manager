@@ -11,7 +11,7 @@ class Teacher extends User
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'teachears_courses');
+        return $this->belongsToMany(Course::class, 'teachers_courses');
     }
 
     public function fullName()

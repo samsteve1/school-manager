@@ -62,15 +62,30 @@ class ClassController extends AdminController
             //  find the particluar user
             $teacher = Teacher::findOrFail($request->teacher);
             if($teacher) {
+
+                //  Check if Teacher doesn't have more than three classes
+
+               if ( $this->checkNumberOfTeachersClasses($teacher)) {
+
                 // detach current teacher
                 $course->teacher()->detach();
+
                 // attach teacher to class
                 $course->teacher()->attach($teacher);
                 return back()->withSuccess("{$teacher->fullName()} has been assigned to {$course->title}");
-            }
+               }
 
+               return back()->withError("{$teacher->fullName()} has been assigned to 3 classes already.");
+
+            }
         }
         return back()->withError('Please select a Teacher to assign.');
-
+    }
+    protected function checkNumberOfTeachersClasses(Teacher $teacher)
+    {
+       if ($teacher->courses->count() < 3) {
+           return true;
+       }
+       return false;
     }
 }
