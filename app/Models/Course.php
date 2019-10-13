@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\{Semester, Teacher};
+use App\Models\{Semester, Teacher, User};
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,6 +24,10 @@ class Course extends Model
     public function teacher()
     {
         return $this->belongsToMany(Teacher::class, 'teachers_courses');
+    }
+    public function hasTeacher()
+    {
+        return $this->teacher->count();
     }
 
 }

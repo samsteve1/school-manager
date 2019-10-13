@@ -27,4 +27,8 @@ class Semester extends Model
         }
         return $count;
     }
+    public function isActive()
+    {
+        return $this->active;
+    }
 }

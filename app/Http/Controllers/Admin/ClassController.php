@@ -65,7 +65,7 @@ class ClassController extends AdminController
 
                 //  Check if Teacher doesn't have more than three classes
 
-               if ( $this->checkNumberOfTeachersClasses($teacher)) {
+               if ( $this->checkNumberOfTeachersClasses($teacher, $course)) {
 
                 // detach current teacher
                 $course->teacher()->detach();
@@ -75,17 +75,36 @@ class ClassController extends AdminController
                 return back()->withSuccess("{$teacher->fullName()} has been assigned to {$course->title}");
                }
 
-               return back()->withError("{$teacher->fullName()} has been assigned to 3 classes already.");
+               return back()->withError("{$teacher->fullName()} has been assigned to 3 classes already this semester.");
 
             }
         }
         return back()->withError('Please select a Teacher to assign.');
     }
-    protected function checkNumberOfTeachersClasses(Teacher $teacher)
+
+    protected function checkNumberOfTeachersClasses(Teacher $teacher, Course $course)
     {
-       if ($teacher->courses->count() < 3) {
+        $count = 0;
+
+        $semester = $course->semesters->first();
+        $courses = $semester->courses;
+
+        //  calculate number of courses teacher has in the semester
+        foreach($courses as $course) {
+
+            if ($course->hasTeacher()) {
+
+                if($course->teacher->first()->id == $teacher->id) {
+                    $count++;
+                }
+            }
+        }
+
+        //  check if classes is up to three
+       if ($count < 3) {
            return true;
        }
+
        return false;
     }
 }

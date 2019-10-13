@@ -21,6 +21,13 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['au
 });
 
 /**
+ * Student routes
+ */
+Route::group(['prefix' => '/students', 'middleware' => ['auth', 'role:student'], 'as' => 'student.', 'namespace' => 'Student'], function () {
+    Route::get('/classes', 'StudentController@classes')->name('classes');
+});
+
+/**
  * Account Routes
  */
 Route::group(['prefix' => '/account', 'namespace' => 'Account', 'middleware' => 'auth', 'as' => 'account.'], function () {

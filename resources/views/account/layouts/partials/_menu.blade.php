@@ -52,6 +52,10 @@
         @include('admin.partials.sidebar._sidebar')
     @endadmin
 
+    @student
+        @include('student.partials._sidebar')
+    @endstudent
+
 
 </ul>
 
