@@ -9,9 +9,24 @@ use Illuminate\Http\Request;
 
 class ClassController extends AdminController
 {
+    public  $activeSession;
+    public $fallCourses;
+    public $springCourses;
+
+    public function __construct()
+    {
+        $this->activeSession = Session::where('active', true)->first()->load('semesters');
+        $this->fallCourses = $this->activeSession->semesters[0]->load('courses')->courses;
+        $this->springCourses = $this->activeSession->semesters[1]->load('courses')->courses;
+
+    }
     public function index()
     {
-        $classes = Course::get();
+        return view('admin.class.index', [
+            'fallCourses' => $this->fallCourses,
+            'springCourses' => $this->springCourses,
+            'activeSession' => $this->activeSession
+        ]);
     }
     public function create()
     {
@@ -22,6 +37,11 @@ class ClassController extends AdminController
         }
         return redirect()->route('admin.session.create')->withSuccess('No active academic session found, Please create one!');
 
+    }
+    public function show(Course $class)
+    {
+        $class = $class->load(['users', 'teacher']);
+       return view('admin.class.class', compact('class'));
     }
 
     /**
@@ -43,17 +63,13 @@ class ClassController extends AdminController
     }
     public function teacher()
     {
-        $teachers = Role::where('name', 'teacher')->get()->first()->users;//->users;
-        $activeSession = Session::where('active', true)->first()->load('semesters');
-
-        $fallCourses = $activeSession->semesters[0]->load('courses')->courses;
-        $springCourses = $activeSession->semesters[1]->load('courses')->courses;
+        $teachers = Role::where('name', 'teacher')->get()->first()->users;
 
         return view('admin.class.teacher', [
             'teachers' => $teachers,
-            'fallCourses' => $fallCourses,
-            'springCourses' => $springCourses,
-            'activeSession' => $activeSession
+            'fallCourses' => $this->fallCourses,
+            'springCourses' => $this->springCourses,
+            'activeSession' => $this->activeSession
         ]);
     }
     public function assignTeacher(Request $request, Course $course)

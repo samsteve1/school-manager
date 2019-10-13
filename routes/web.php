@@ -6,15 +6,30 @@
 Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin'], 'as' => 'admin.'], function () {
 
     // Class management
-    Route::get('/class/create', 'ClassController@create')->name('class.create');
-    Route::post('/class/create', 'ClassController@store')->name('class.store');
-    Route::get('/class/teacher', 'ClassController@teacher')->name('class.teacher');
-    Route::post('/class/{course}/teacher', 'ClassController@assignTeacher')->name('class.teacher.assign');
+    Route::group(['prefix' => '/class'], function () {
+        Route::get('/create', 'ClassController@create')->name('class.create');
+        Route::get('/', 'ClassController@index')->name('class.index');
+        Route::get('/teacher', 'ClassController@teacher')->name('class.teacher');
+        Route::get('/{class}', 'ClassController@show')->name('class.show');
+        Route::post('/create', 'ClassController@store')->name('class.store');
+        Route::post('/{course}/teacher', 'ClassController@assignTeacher')->name('class.teacher.assign');
+    });
 
     //  Session Management
-    Route::get('/session/create', 'SessionController@create')->name('session.create');
-    Route::get('/session', 'SessionController@index')->name('session.index');
-    Route::post('/session/create', 'SessionController@store')->name('session.create');
+    Route::group(['prefix' => '/session'], function () {
+        Route::get('/create', 'SessionController@create')->name('session.create');
+        Route::get('/', 'SessionController@index')->name('session.index');
+        Route::post('/create', 'SessionController@store')->name('session.create');
+    });
+
+    //  student Management
+    Route::group(['prefix' => '/student'], function () {
+        Route::get('/', 'StudentController@index')->name('student.index');
+        Route::get('/{student}', 'StudentController@show')->name('student.show');
+    });
+
+
+
 
     //  Semester
     Route::get('/semester/{semester}', 'SemesterController@show')->name('semester.show');

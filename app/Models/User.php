@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Course;
 use App\Traits\HasPermissionsTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -56,5 +57,9 @@ class User extends Authenticatable
     public function fullName()
     {
         return $this->firstName() . ' ' . $this->lastName();
+    }
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'users_courses');
     }
 }

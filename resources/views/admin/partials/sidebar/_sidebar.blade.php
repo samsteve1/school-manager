@@ -1,6 +1,7 @@
 <!--Admin Linksu-->
 <li class="header">
-        ADMINISTRATIVE TASKS
+    <i class="fa fa-graduation-cap"></i>
+        CLASSES
 </li>
      <li class="">
          <a href="{{ route('admin.class.create') }}">
@@ -9,11 +10,23 @@
          </a>
      </li>
      <li class="">
-        <a href="">
+         <a href="{{ route('admin.student.index') }}">
+            <i class="fa fa-user-graduate"></i>
+            <span>Students</span>
+         </a>
+     </li>
+     <li class="">
+        <a href="{{ route('admin.class.index') }}">
             <i class="fa fa-eye"></i>
             <span>View Classes</span>
         </a>
      </li>
+
+     <li class="header">
+            <i class="fa fa-school"></i>
+                SESSION & SEMESTER
+    </li>
+
      <li class="">
          <a href="{{ route('admin.class.teacher') }}">
              <i class="fa fa-chalkboard-teacher"></i>
