@@ -10,11 +10,9 @@
                 <th>Teacher in charge</th>
             </tr>
             @if (!$courses->count())
-                <tr>
-                    <td>
+
                         <p class="text-danger">You've not enrolled in any class this for this semester.</p>
-                    </td>
-                </tr>
+
             @endif
         </thead>
         <tbody>

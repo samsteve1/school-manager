@@ -6,12 +6,12 @@
 @endsection
 
 @section('account_content_box_title')
-    All students
+    All students: <strong>{{ $studentCount}}</strong>
 @endsection
 
 @section('account_content_box_body')
 <div class="col-md-10 col-md-offset-1">
-    <div class="table-responsive">
+    <div class="box table-responsive">
        <table class="table table-striped table-hover">
             <thead>
                     <tr>
@@ -35,8 +35,12 @@
                             <td>{{ $student->email }}</td>
                         </tr>
                     @endforeach
+
                 </tbody>
        </table>
+       <div class="box-footer">
+          {{ $students->links() }}
+       </div>
     </div>
 </div>
 @endsection

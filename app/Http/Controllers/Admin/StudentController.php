@@ -12,8 +12,9 @@ class StudentController extends Controller
     {
         $role = Role::where('name', 'student')->first();
         if($role) {
+            $studentCount = $role->users->count();
             $students = $role->users()->paginate(1);
-            return view('admin.student.index', compact('students'));
+            return view('admin.student.index', compact('students', 'studentCount'));
         }
 
     }

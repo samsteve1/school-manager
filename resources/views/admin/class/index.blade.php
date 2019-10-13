@@ -12,7 +12,7 @@
     <div class="col-md-9 col-md-offset-1">
         <div class="box box-success">
             <div class="box-header">
-                <h4>Spring semester classes</h4>
+                <h4>Spring semester classes ({{ $springCourses->count() }})</h4>
             </div>
             @include('admin.class.class-list', ['courses' => $springCourses])
         </div>
@@ -20,7 +20,7 @@
     <div class="col-md-9 col-md-offset-1">
         <div class="box box-warning">
             <div class="box-header">
-                <h4>Fall semester classes</h4>
+        <h4>Fall semester classes  ({{ $fallCourses->count() }})</h4>
             </div>
             @include('admin.class.class-list', ['courses' => $fallCourses])
         </div>

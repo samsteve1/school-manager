@@ -48,11 +48,11 @@ class User extends Authenticatable
     }
     public function firstName()
     {
-        return $this->first_name;
+        return ucfirst($this->first_name);
     }
     public function lastName()
     {
-        return $this->last_name;
+        return ucfirst($this->last_name);
     }
     public function fullName()
     {

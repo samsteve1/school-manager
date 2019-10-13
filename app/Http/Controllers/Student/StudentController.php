@@ -28,6 +28,7 @@ class StudentController extends Controller
         $fallCourses = $this->filterCourses($this->fallCourses);
         $springCourses = $this->filterCourses($this->springCourses);
 
+
         return view('student.my-classes', compact('fallCourses', 'springCourses'));
 
     }
@@ -71,7 +72,7 @@ class StudentController extends Controller
     {
         return $courses->filter(function ($course) {
             foreach ($course->users as $user) {
-                return $user->id === auth()->user()->id;
+                return $course->users->contains(auth()->user());
             }
         });
     }
@@ -90,7 +91,7 @@ class StudentController extends Controller
 
             if ($course->hasCurrentUser()) {
 
-                if($course->users->first()->id == auth()->user()->id) {
+                if($course->users->contains(auth()->user())) {
                     $count++;
                 }
             }

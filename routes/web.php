@@ -28,6 +28,13 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['au
         Route::get('/{student}', 'StudentController@show')->name('student.show');
     });
 
+    //  Staff Management
+    Route::group(['prefix' => '/staff'], function () {
+        Route::get('/', 'StaffController@index')->name('staff.index');
+        Route::get('/create', 'StaffController@create')->name('staff.create');
+        Route::get('/{staff}', 'StaffController@show')->name('staff.show');
+        Route::post('/', 'StaffController@store')->name('staff.store');
+    });
 
 
 

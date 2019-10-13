@@ -56,5 +56,32 @@
 
             </ul>
           </div>
-
       </li>
+      <li class="header">
+          <i class="fa fa-users"></i>
+       STAFF
+      </li>
+      <li class="">
+          <a href="{{ route('admin.staff.create') }}">
+              <i class="fa fa-user-plus"></i>
+              <span>Add staff</span>
+          </a>
+      </li>
+      <li class="">
+        <a href="{{ route('admin.staff.index') }}">
+            <i class="fa fa-user-friends"></i>
+            <span>All staff</span>
+        </a>
+    </li>
+    <li class="">
+        <a href="">
+            <i class="fa fa-users-cog"></i>
+            <span>Manage Roles</span>
+         </a>
+    </li>
+    <li class="">
+        <a href="">
+            <i class="fa fa-user-plus"></i>
+            <span>Remove staff</span>
+        </a>
+    </li>

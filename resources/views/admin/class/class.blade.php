@@ -36,8 +36,8 @@
                         @foreach ($class->users as $user)
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ ucwords($user->firstName()) }}</td>
-                                <td>{{ ucwords($user->lastName()) }}</td>
+                                <td><a href="{{ route('admin.student.show', $user) }}">{{ ucwords($user->firstName()) }}</a></td>
+                                <td><a href="{{ route('admin.student.show', $user) }}">{{ ucwords($user->lastName()) }}</a></td>
                                 <td>{{ ucwords($user->gender) }}</td>
                                 <td>{{ $user->email }}</td>
                             </tr>
