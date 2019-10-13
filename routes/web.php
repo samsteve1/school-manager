@@ -24,7 +24,10 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['au
  * Student routes
  */
 Route::group(['prefix' => '/students', 'middleware' => ['auth', 'role:student'], 'as' => 'student.', 'namespace' => 'Student'], function () {
+    //  Classes management
     Route::get('/classes', 'StudentController@classes')->name('classes');
+    Route::get('/classes/enroll', 'StudentController@enroll')->name('classes.enroll');
+    Route::post('/classes/enroll', 'StudentController@enrollStore')->name('classes.enroll.store');
 });
 
 /**

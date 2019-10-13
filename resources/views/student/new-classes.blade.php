@@ -1,4 +1,3 @@
-<?php $count = 1; ?>
 <div class="box-body table-responsive">
 
     <table class="table table-striped">
@@ -8,11 +7,12 @@
                 <th>Code</th>
                 <th>Title</th>
                 <th>Teacher in charge</th>
+                <th>Enroll</th>
             </tr>
             @if (!$courses->count())
                 <tr>
                     <td>
-                        <p class="text-danger">You've not enrolled in any class this for this semester.</p>
+                        No classes added to this semester yet.
                     </td>
                 </tr>
             @endif
@@ -24,7 +24,15 @@
                     <td>{{ strtoupper($class->code) }}</td>
                     <td>{{ ucwords($class->title) }}</td>
                     <td>
-                        {{ $class->teacher->count() ? $class->teacher->first()->fullName() : 'Unavailable yet.' }}</td>
+                        {{ $class->teacher->count() ? $class->teacher->first()->fullName() : 'None assigned yet' }}</td>
+                    <td>
+                        <form action="{{ route('student.classes.enroll.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="class" value="{{ $class->id }}">
+                            <button type="submit" class="btn btn-block {{ $class->hasCurrentUser() ? 'btn-danger' : 'btn-success' }} btn-medium {{ $class->hasCurrentUser() ? 'disabled' : '' }}">{{ $class->hasCurrentUser() ? 'Enrolled' : 'Enroll' }}</button>
+                        </form>
+
+                    </td>
                 </tr>
             @endforeach
         </tbody>

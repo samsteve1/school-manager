@@ -29,5 +29,14 @@ class Course extends Model
     {
         return $this->teacher->count();
     }
+    public function hasUser()
+    {
+        return $this->users->count();
+    }
+
+    public function hasCurrentUser()
+    {
+        return $this->users->contains(auth()->user());
+    }
 
 }

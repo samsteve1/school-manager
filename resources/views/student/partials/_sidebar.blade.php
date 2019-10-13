@@ -5,7 +5,7 @@
 </li>
 
 <li class="">
-    <a href="">
+    <a href="{{ route('student.classes.enroll') }}">
         <i class="fa fa-pen"></i>
         <span>Enroll in classes</span>
     </a>
