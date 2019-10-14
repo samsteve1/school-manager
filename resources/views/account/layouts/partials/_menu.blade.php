@@ -63,6 +63,12 @@
         @include('account.layouts.partials._finance-contract');
     @endcontractFinance
 
+    <!--Teachers links-->
+
+    @teacher
+        @include('account.layouts.partials._teacher');
+    @endteacher
+
 
 </ul>
 

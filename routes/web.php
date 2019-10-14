@@ -1,9 +1,12 @@
 <?php
 
+
+Route::get('/staff', 'Admin\StaffController@index')->name('staff.index')->middleware(['auth', 'permission:view_staff']);Route::get('/staff', 'Admin\StaffController@index')->name('staff.index')->middleware(['auth', 'permission:view_staff']);
+
 /**
  * Admin Routes
  */
-Route::get('/staff', 'Admin\StaffController@index')->name('staff.index')->middleware(['auth', 'permission:view_staff']);
+
 Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin'], 'as' => 'admin.'], function () {
 
     // Class management
@@ -67,6 +70,11 @@ Route::group(['prefix' => '/account', 'namespace' => 'Account', 'middleware' => 
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::get('/password', 'PasswordChangeController@create')->name('password');
     Route::post('/password', 'PasswordChangeController@store')->name('password.store');
+});
+
+// Teachers Routes
+Route::group(['prefix' => '/teacher', 'middleware' => ['auth', 'role:teacher']], function () {
+    Route::get('/class', 'Account\TeacherController@index')->name('teacher.index');
 });
 
 Route::get('/', function () {
