@@ -13,6 +13,7 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['au
         Route::get('/{class}', 'ClassController@show')->name('class.show');
         Route::post('/create', 'ClassController@store')->name('class.store');
         Route::post('/{course}/teacher', 'ClassController@assignTeacher')->name('class.teacher.assign');
+        Route::delete('/{course}/{user}', 'ClassController@removeStudent')->name('class.student.remove');
     });
 
     //  Session Management

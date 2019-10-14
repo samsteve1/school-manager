@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\{Course, Semester, Session, Teacher, Role};
+use App\Models\{Course, Semester, Session, Teacher, Role, User};
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Requests\Admin\ClassStoreRequest;
 use Illuminate\Http\Request;
@@ -96,6 +96,11 @@ class ClassController extends AdminController
             }
         }
         return back()->withError('Please select a Teacher to assign.');
+    }
+    public function removeStudent(Course $course, User $user)
+    {
+        $course->users()->detach($user);
+        return back()->withSuccess("{$user->fullName()} removed from {$course->title}");
     }
 
     protected function checkNumberOfTeachersClasses(Teacher $teacher, Course $course)

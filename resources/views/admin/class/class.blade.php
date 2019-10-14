@@ -11,7 +11,7 @@
 
 
 @section('account_content_box_body')
-    <div class="col-md-7">
+    <div class="col-md-8">
         <div class="box box-info">
             <div class="box-header">
                 <h4>Students enrolled in class</h4>
@@ -25,6 +25,7 @@
                             <th>Lastname</th>
                             <th>Gender</th>
                             <th>Email address</th>
+                            <th>Remove</th>
                         </tr>
                         @if (!$class->users->count())
                             <tr>
@@ -40,6 +41,13 @@
                                 <td><a href="{{ route('admin.student.show', $user) }}">{{ ucwords($user->lastName()) }}</a></td>
                                 <td>{{ ucwords($user->gender) }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>
+                                    <form action="{{ route('admin.class.student.remove', [$class, $user]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm" type="submit">Remove</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -47,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="box box-success">
             <div class="box-header">
                 <h4>Class summary</h4>
