@@ -33,7 +33,7 @@ class StaffController extends Controller
     {
         //  fetch all staff
         $staffList = User::get();
-
+        dd($staffList);
         $staffs = $staffList; //->filter(function($staff) {
         //     return !$staff->hasARole('student');
         // });
