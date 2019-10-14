@@ -3,7 +3,7 @@
 /**
  * Admin Routes
  */
-Route::get('/staff', 'Admin\StaffController@index')->name('staff.index')->middleware('permission:view_staff');
+Route::get('/staff', 'Admin\StaffController@index')->name('staff.index')->middleware(['auth', 'permission:view_staff']);
 Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'role:admin'], 'as' => 'admin.'], function () {
 
     // Class management
