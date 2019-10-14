@@ -2,6 +2,7 @@
 
 The solution is written with Laravel, a PHP framework.
 
+    URL (http://st-school-manager.herokuapp.com)
   ## Students  
 - [Students can enroll in school].
 - [Students can enroll in maximum of 6 classes in a semester].

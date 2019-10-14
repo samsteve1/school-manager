@@ -16,8 +16,8 @@
                     <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->first_name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                              <li><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-                              <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                              <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+                              <li><a href="{{ route('account.profile') }}"><i class="fa fa-user"></i> Profile</a></li>
                               <li role="separator" class="divider"></li>
                               <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
