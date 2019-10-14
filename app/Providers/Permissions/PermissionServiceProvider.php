@@ -30,5 +30,5 @@ class PermissionServiceProvider extends ServiceProvider
     //             return $user->hasPermissionTo($permission);
     //         });
     //     });
-    // }
+    }
 }
