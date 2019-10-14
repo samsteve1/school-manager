@@ -55,6 +55,13 @@ trait HasPermissionsTrait
     }
     return false;
   }
+  public function hasARole($role)
+  {
+      if ($this->roles->contains('name', $role)) {
+          return true;
+      }
+      return false;
+  }
 
   public function roles()
   {

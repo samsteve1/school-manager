@@ -37,7 +37,7 @@ class StaffController extends Controller
         $staffList = User::get();
 
         $staffs = $staffList->filter(function($staff) {
-            return !$staff->hasRole('student');
+            return !$staff->hasARole('student');
 
             // foreach($staff->roles as $role){
             //     return $role->name != 'student';
