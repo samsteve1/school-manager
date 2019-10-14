@@ -35,17 +35,7 @@ class StaffController extends Controller
         $staffs = User::whereDoesntHave('roles', function (Builder $query) {
                 $query->where('name', '=', 'student');
         })->get();
-
-        dd($staffs);
-        // //  fetch all staff
-        // $staffList = User::get();
-
-        // $staffs = $staffList ->filter(function($staff) {
-        //     return !$staff->hasARole('student');
-        // });
-
-        // dd($staffs);
-        // return view('admin.staff.index', compact('staffs'));
+        return view('admin.staff.index', compact('staffs'));
     }
     public function create()
     {
