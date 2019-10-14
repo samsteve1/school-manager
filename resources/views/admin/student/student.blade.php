@@ -46,7 +46,7 @@
             </div>
             <div class="box-body">
                 @if (!$student->courses->count())
-                    <p>{{ $student->name }} is yet to enroll in any class.</p>
+                    <p>{{ $student->fullName() }} is yet to enroll in any class.</p>
                 @endif
 
                 <div class="table-responsive">
