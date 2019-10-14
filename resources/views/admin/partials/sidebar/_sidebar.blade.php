@@ -81,7 +81,7 @@
     </li>
     <li class="">
         <a href="{{ route('admin.staff.remove') }}">
-            <i class="fa fa-user-plus"></i>
+            <i class="fa fa-user-minus"></i>
             <span>Remove staff</span>
         </a>
     </li>
