@@ -11,8 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class StaffController extends Controller
 {
     protected $staffs;
+    //protected $studentRole;
     public function __construct()
     {
+       // $this->studentRole = Role::where('name', 'student')->first();
+
         $staffs = User::get();
         $noRoleStaff = $staffs->filter(function($staff) {
             return !$staff->roles->count();
@@ -28,15 +31,17 @@ class StaffController extends Controller
     }
     public function index()
     {
-        $role = Role::where('name', 'student')->first();
+
+
         //  fetch all staff
-        $staffs = User::get();
+        $staffList = User::get();
 
-        $staffs = $staffs->filter(function($staff) {
+        $staffs = $staffList->filter(function($staff) {
+            return !$staff->hasRole('student');
 
-            foreach($staff->roles as $role){
-                return $role->name != 'student';
-            }
+            // foreach($staff->roles as $role){
+            //     return $role->name != 'student';
+            // }
         });
         return view('admin.staff.index', compact('staffs'));
 
