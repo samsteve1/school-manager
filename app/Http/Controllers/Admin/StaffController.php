@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreStaffRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Builder;
 
 class StaffController extends Controller
 {
@@ -31,15 +32,20 @@ class StaffController extends Controller
     }
     public function index()
     {
-        //  fetch all staff
-        $staffList = User::get();
-
-        $staffs = $staffList ->filter(function($staff) {
-            return !$staff->hasARole('student');
-        });
+        $staffs = User::whereDoesntHave('roles', function (Builder $query) {
+                $query->where('name', '=', 'student');
+        })->get();
 
         dd($staffs);
-        return view('admin.staff.index', compact('staffs'));
+        // //  fetch all staff
+        // $staffList = User::get();
+
+        // $staffs = $staffList ->filter(function($staff) {
+        //     return !$staff->hasARole('student');
+        // });
+
+        // dd($staffs);
+        // return view('admin.staff.index', compact('staffs'));
     }
     public function create()
     {
