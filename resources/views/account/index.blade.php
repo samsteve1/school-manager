@@ -5,5 +5,5 @@
 @endsection
 
 @section('account_content_box_title')
-    Howdy, {{ auth()->user()->firstName() }}.
+    Welcome, {{ auth()->user()->firstName() }}.
 @endsection

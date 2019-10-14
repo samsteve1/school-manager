@@ -51,10 +51,17 @@
     @admin
         @include('admin.partials.sidebar._sidebar')
     @endadmin
+    <!--if the authenticated user  is a student, include the student links -->
 
     @student
         @include('student.partials._sidebar')
     @endstudent
+
+    <!-- finance and contract staff-->
+    @contractFinance
+
+        @include('account.layouts.partials._finance-contract');
+    @endcontractFinance
 
 
 </ul>

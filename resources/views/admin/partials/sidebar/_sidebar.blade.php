@@ -68,7 +68,7 @@
           </a>
       </li>
       <li class="">
-        <a href="{{ route('admin.staff.index') }}">
+        <a href="{{ route('staff.index') }}">
             <i class="fa fa-user-friends"></i>
             <span>All staff</span>
         </a>

@@ -13,7 +13,7 @@ class CreateRolesPermissionsTablee extends Migration
      */
     public function up()
     {
-        Schema::create('roles_permission', function (Blueprint $table) {
+        Schema::create('roles_permissions', function (Blueprint $table) {
            $table->bigInteger('role_id')->unsigned()->index();
            $table->bigInteger('permission_id')->unsigned()->index();
 

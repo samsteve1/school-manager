@@ -39,7 +39,7 @@
                             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-fw fa-power-off"></i>  Logout
                             </a>
-                            <form id="logout-form" action="{{ url('auth/logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </li>
