@@ -33,10 +33,12 @@ class StaffController extends Controller
     {
         //  fetch all staff
         $staffList = User::get();
-        dd($staffList);
-        $staffs = $staffList; //->filter(function($staff) {
-        //     return !$staff->hasARole('student');
-        // });
+
+        $staffs = $staffList ->filter(function($staff) {
+            return !$staff->hasARole('student');
+        });
+
+        dd($staffs);
         return view('admin.staff.index', compact('staffs'));
     }
     public function create()
