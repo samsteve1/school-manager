@@ -57,4 +57,45 @@ class StaffController extends Controller
 
         return back()->withSuccess('Staff added!');
     }
+
+    public function manage()
+    {
+        $roles = Role::get();
+        $roles = $roles->filter(function($role) {
+            return strtolower($role->name) != 'student';
+        });
+
+        $staffs = User::get();
+        $noRoleStaff = $staffs->filter(function($staff) {
+            return !$staff->roles->count();
+        });
+
+        $roleStaffs = $staffs->filter(function($staff) {
+            foreach($staff->roles as $role){
+                return $role->name != 'student';
+            }
+        });
+
+        $staffs = $noRoleStaff->concat($roleStaffs);
+
+
+        return view('admin.staff.manage', compact(['staffs', 'roles']));
+    }
+    public function storeRoles(User $staff, Request $request)
+    {
+        $role = $request->role;
+        if($role) {
+            if ($role == 'none') {
+                $staff->roles()->detach();
+                return back()->withSuccess('Roles withdrawn!');
+            }
+            else {
+                $role = Role::findOrFail($role);
+                $staff->roles()->attach($role);
+                return back()->withSuccess('Role has been asigned!');
+            }
+
+        }
+        return back()->withError('Please select a role!');
+    }
 }

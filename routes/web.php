@@ -32,8 +32,12 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['au
     Route::group(['prefix' => '/staff'], function () {
         Route::get('/', 'StaffController@index')->name('staff.index');
         Route::get('/create', 'StaffController@create')->name('staff.create');
+        Route::get('/manage', 'StaffController@manage')->name('staff.manage');
+        Route::post('/{staff}/manage', 'StaffController@storeRoles')->name('staff.manage.store');
         Route::get('/{staff}', 'StaffController@show')->name('staff.show');
+
         Route::post('/', 'StaffController@store')->name('staff.store');
+
     });
 
 

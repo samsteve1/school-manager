@@ -74,7 +74,7 @@
         </a>
     </li>
     <li class="">
-        <a href="">
+        <a href="{{ route('admin.staff.manage') }}">
             <i class="fa fa-users-cog"></i>
             <span>Manage Roles</span>
          </a>
