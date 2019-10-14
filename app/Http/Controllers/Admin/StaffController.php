@@ -31,21 +31,13 @@ class StaffController extends Controller
     }
     public function index()
     {
-
-
         //  fetch all staff
         $staffList = User::get();
 
-        $staffs = $staffList->filter(function($staff) {
-            return !$staff->hasARole('student');
-
-            // foreach($staff->roles as $role){
-            //     return $role->name != 'student';
-            // }
-        });
+        $staffs = $staffList; //->filter(function($staff) {
+        //     return !$staff->hasARole('student');
+        // });
         return view('admin.staff.index', compact('staffs'));
-
-
     }
     public function create()
     {
