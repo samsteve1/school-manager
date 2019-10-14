@@ -80,7 +80,7 @@
          </a>
     </li>
     <li class="">
-        <a href="">
+        <a href="{{ route('admin.staff.remove') }}">
             <i class="fa fa-user-plus"></i>
             <span>Remove staff</span>
         </a>

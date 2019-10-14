@@ -10,6 +10,22 @@ use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
+    protected $staffs;
+    public function __construct()
+    {
+        $staffs = User::get();
+        $noRoleStaff = $staffs->filter(function($staff) {
+            return !$staff->roles->count();
+        });
+
+        $roleStaffs = $staffs->filter(function($staff) {
+            foreach($staff->roles as $role){
+                return $role->name != 'student';
+            }
+        });
+
+        $this->staffs = $noRoleStaff->concat($roleStaffs);
+    }
     public function index()
     {
         $role = Role::where('name', 'student')->first();
@@ -65,20 +81,7 @@ class StaffController extends Controller
             return strtolower($role->name) != 'student';
         });
 
-        $staffs = User::get();
-        $noRoleStaff = $staffs->filter(function($staff) {
-            return !$staff->roles->count();
-        });
-
-        $roleStaffs = $staffs->filter(function($staff) {
-            foreach($staff->roles as $role){
-                return $role->name != 'student';
-            }
-        });
-
-        $staffs = $noRoleStaff->concat($roleStaffs);
-
-
+        $staffs = $this->staffs;
         return view('admin.staff.manage', compact(['staffs', 'roles']));
     }
     public function storeRoles(User $staff, Request $request)
@@ -97,5 +100,16 @@ class StaffController extends Controller
 
         }
         return back()->withError('Please select a role!');
+    }
+    public function remove()
+    {
+        $staffs = $this->staffs;
+
+        return view('admin.staff.remove', compact('staffs'));
+    }
+    public function destroy(User $staff)
+    {
+        $staff->delete();
+        return back()->withSuccess('Staff removed!');
     }
 }
