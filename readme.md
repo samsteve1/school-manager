@@ -45,5 +45,9 @@ The solution is written with Laravel, a PHP framework.
 
 
 ### Other staff
-    -[Can view own's records]
+-[Can view own's records]
+
+The dashboard sidebar links depends on the  roles and permissions of the currently authenticated user.
+
+
 
